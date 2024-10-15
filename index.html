@@ -1,11 +1,59 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Students Portal@GMCJ</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Students Portal@GMCJ</title>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyD5mhD3FyTaekJcPcVBw7SaJ6yZLiqhFF4",
+      authDomain: "students-portal-gmcj.firebaseapp.com",
+      databaseURL: "https://students-portal-gmcj-default-rtdb.firebaseio.com",
+      projectId: "students-portal-gmcj",
+      storageBucket: "students-portal-gmcj.appspot.com",
+      messagingSenderId: "83626679597",
+      appId: "1:83626679597:web:5ac68747193573f62207a4"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+  </script>
 </head>
 
-<body> <h1>Welcome to Students Portal@GMCJ</h1>
-    <p>This is your platform for Information regarding GMCJ's Events, Elections, and Announcements.</p>
+<body>
+  <h1>Welcome to Students Portal@GMCJ</h1>
+
+  <input type="email" id="email" placeholder="Enter Email"><br>
+  <input type="password" id="password" placeholder="Enter Password"><br>
+  <button onclick="login()">Login</button>
+
+  <script type="module">
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+    const auth = getAuth();
+
+    function login() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Successful login
+          alert('Login Successful!');
+        })
+        .catch((error) => {
+          // Handle errors
+          alert('Error: ' + error.message);
+        });
+    }
+  </script>
 </body>
 </html>
